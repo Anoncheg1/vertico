@@ -735,7 +735,8 @@ When the prefix argument is 0, the group order is reset."
   ;; the *Completions* buffer. See bug#48356.
   (when (> vertico--total 0)
     (let ((vertico--index (max 0 vertico--index)))
-      (insert (prog1 (vertico--candidate) (delete-minibuffer-contents))))))
+      (insert (prog1 (vertico--candidate)
+                (delete-region (minibuffer-prompt-end) (point)))))))
 
 ;;;###autoload
 (define-minor-mode vertico-mode
